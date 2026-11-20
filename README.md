@@ -2,6 +2,16 @@
 
 Harbourline Lending (fictional) tracks drawdowns, interest and repayments on property loans in spreadsheets, so cash positions are slow to confirm and hard to audit. Chronos is an event-sourced ledger for property loans: every drawdown request, approval, interest accrual and repayment is an immutable event, and any balance can be replayed to any date.
 
+## See it in action
+
+![Chronos walkthrough: a drawdown awaiting sign-off is kept out of the balance, the requester's own approval is refused, a finance approver signs it off, and the as-of date replays the loan to a past balance](docs/media/demo.gif)
+
+| Loan position | Four-eyes refusal | As of a past date |
+|---|---|---|
+| ![Loan balance with a drawdown awaiting sign-off shown apart](docs/media/ledger.png) | ![Approval by the requester refused](docs/media/four-eyes.png) | ![The loan replayed to 1 February 2026](docs/media/as-of.png) |
+
+Full-quality video: [docs/media/demo.mp4](docs/media/demo.mp4). Recorded from the running app with `demo/` (`cd demo && npm install && npm run record`).
+
 ## Design at a glance
 Operations book drawdowns and repayments; finance approves and accrues interest; auditors replay any past position.
 

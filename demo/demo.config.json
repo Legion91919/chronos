@@ -1,0 +1,8 @@
+{
+  "start": [
+    { "name": "api", "cmd": "dotnet run --project src/Chronos.Api --no-build", "env": { "ASPNETCORE_ENVIRONMENT": "Development", "ASPNETCORE_URLS": "http://localhost:5204", "EventStore__Kind": "InMemory" }, "ready": "http://localhost:5204/health/ready" },
+    { "name": "web", "cmd": "npm run dev -- --port 6204 --strictPort", "cwd": "web", "ready": "http://localhost:6204" }
+  ],
+  "url": "http://localhost:6204",
+  "viewport": { "width": 1280, "height": 800 }
+}
