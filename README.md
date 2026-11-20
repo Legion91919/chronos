@@ -19,6 +19,19 @@ flowchart LR
   api -->|outbox| cash[Cash desk]
 ```
 
+
+## Run it in GitHub Codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Legion91919/chronos?quickstart=1)
+
+The dev container installs the SDKs, restores packages and runs every test once on first start. The same setup works locally with VS Code's Dev Containers extension.
+
+| What | Command | Port |
+|---|---|---|
+| API (Chronos) | `ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://0.0.0.0:5204 dotnet run --project src/Chronos.Api` | 5204 |
+| Web app | `cd web && npm run dev` | 5174 |
+| All tests (same as CI) | `scripts/test-all.sh` | - |
+
 ## What it does (slice 1)
 - Open a loan; request a drawdown (pending, **not** in the balance); approve it (a different person must approve).
 - Accrue interest **Actual/365** on each day's closing principal; record repayments (interest first, then principal).
