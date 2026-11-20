@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Chronos.Statements</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Agentic.Blocks.Core" Version="0.1.0" />
+    <ProjectReference Include="../../../Chronos.EventStore/Chronos.EventStore.csproj" />
+    <!-- Read side depends only on the Ledger's public event contracts. -->
+    <ProjectReference Include="../../Ledger/Chronos.Ledger/Chronos.Ledger.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Chronos.Tests" />
+  </ItemGroup>
+</Project>

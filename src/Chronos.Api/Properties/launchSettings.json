@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Chronos.Api": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5204",
+      "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
+    }
+  }
+}

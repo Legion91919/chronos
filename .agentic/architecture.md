@@ -29,17 +29,39 @@ Several business areas need clear boundaries, but one deployment and one databas
 
 Record the final choice with write_adr, including what you rejected.
 
-Judgement: Build a modular monolith with an append-only cash ledger, idempotency keys, an outbox and sagas for drawdown approval. See `decisions/0001-architecture-style.md`.
+Judgement: modular monolith (ADR-0001) with an **event-sourced ledger core and CQRS** (ADR-0002, the advisor's "good alternative" for money + audit). Shared concerns come from vendored Agentic.Blocks packages (ADR-0003).
 
 ## Context
 ```mermaid
 flowchart LR
-  user[User] --> app[This system]
-  app --> ext[External system]
+  ops[Loan operations] --> web[Chronos web<br/>React + Vite]
+  fin[Finance approver] --> web
+  aud[Auditor] -->|point-in-time, raw events| api
+  web -->|/api, Idempotency-Key, X-Actor| api[Chronos.Api<br/>ASP.NET Core 8]
+  api --> es[(Event store<br/>JSON lines file)]
+  api -->|outbox| cash[Cash desk feed<br/>stand-in for treasury]
 ```
 
 ## Modules and boundaries
-TODO: each module, what it owns, what it may call.
+| Project | Owns | May call |
+|---|---|---|
+| `src/Chronos.EventStore` | `IEventStore`, in-memory + JSON-lines stores, optimistic concurrency, `UpcasterChain` | nothing in Chronos |
+| `src/Modules/Ledger/Chronos.Ledger` (write side) | commands, the `Loan` aggregate (internal), Actual/365 day count, event contracts (`Contracts/`), serializer + upcasters | EventStore, Blocks.Core |
+| `src/Modules/Statements/Chronos.Statements` (read side) | balance + statement projections (checkpoint, rebuild), point-in-time replay, raw history | EventStore, Ledger **public contracts only** |
+| `src/Chronos.Api` | composition root: endpoints, DI, ProblemDetails, health, idempotency, audit, outbox, demo seed | all of the above |
+
+Enforced by `tests/Chronos.Tests/ArchitectureTests.cs`: the store knows no module, the write side never references the read side, no module opens internals to another, the read side uses only public Ledger types.
+
+## Rules that shape the code
+- A stream's business dates never go backwards; money cannot move on or before the last accrued day. So point-in-time = replay of a stream prefix.
+- A drawdown counts only after a *different* person approves it (four eyes).
+- Repayments pay accrued interest first, then principal. Interest: Actual/365 on each day's closing principal, one rounding per accrual (half away from zero).
 
 ## Cross-cutting
-TODO: auth, logging, tracing, configuration, error handling.
+- Errors: `Result`/`Error` → ProblemDetails (Blocks.Web) with `code`, `traceId`, `correlationId`.
+- Idempotency: Blocks.Idempotency on every POST + `commandId` on every event.
+- Audit: Blocks.Audit hash-chained log per accepted command (actor ids only); the event stream is the primary audit trail.
+- Outbox: Blocks.Outbox `ledger.event-notice.v1` → idempotent `CashDeskNotifier`.
+- Time: `TimeProvider` for `recordedAt`; business dates are explicit `DateOnly`s.
+- Telemetry: meter `Chronos.Ledger` (`chronos.ledger.concurrency_conflicts`), Blocks meters, correlation ids in logs.
+- Auth: demo `X-Actor` header (opaque ids) in slice 1; real login (Blocks.Auth, roles ops/finance/auditor) is slice 2.

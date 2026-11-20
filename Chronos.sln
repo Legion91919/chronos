@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6149E4CC-AB78-4EF3-96E0-53BD708778B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronos.EventStore", "src\Chronos.EventStore\Chronos.EventStore.csproj", "{EC11A2A5-CF5E-4FC8-BEC8-814C32C137B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{FE19B2B4-209D-4023-B51B-BDA3BF63A41B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ledger", "Ledger", "{9579AD9A-AF89-4A9B-8D30-A24D56836F64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronos.Ledger", "src\Modules\Ledger\Chronos.Ledger\Chronos.Ledger.csproj", "{8DC5C6A9-36F3-4FA7-8D40-BD5C3F93D081}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statements", "Statements", "{9F45F4FD-1204-4845-BFD3-72F58DF456DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronos.Statements", "src\Modules\Statements\Chronos.Statements\Chronos.Statements.csproj", "{33BB3C2B-5532-47A3-B88A-82D33E83E595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronos.Api", "src\Chronos.Api\Chronos.Api.csproj", "{36953041-B1A7-4CA1-972A-6E4F91F189E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FEC690FA-FA3A-4A7A-9D1E-D8E552F66D40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronos.Tests", "tests\Chronos.Tests\Chronos.Tests.csproj", "{89291FDB-FE78-4701-A668-1FF8FA7AC19F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC11A2A5-CF5E-4FC8-BEC8-814C32C137B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC11A2A5-CF5E-4FC8-BEC8-814C32C137B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC11A2A5-CF5E-4FC8-BEC8-814C32C137B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC11A2A5-CF5E-4FC8-BEC8-814C32C137B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC5C6A9-36F3-4FA7-8D40-BD5C3F93D081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC5C6A9-36F3-4FA7-8D40-BD5C3F93D081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC5C6A9-36F3-4FA7-8D40-BD5C3F93D081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC5C6A9-36F3-4FA7-8D40-BD5C3F93D081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BB3C2B-5532-47A3-B88A-82D33E83E595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BB3C2B-5532-47A3-B88A-82D33E83E595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BB3C2B-5532-47A3-B88A-82D33E83E595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BB3C2B-5532-47A3-B88A-82D33E83E595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36953041-B1A7-4CA1-972A-6E4F91F189E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36953041-B1A7-4CA1-972A-6E4F91F189E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36953041-B1A7-4CA1-972A-6E4F91F189E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36953041-B1A7-4CA1-972A-6E4F91F189E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89291FDB-FE78-4701-A668-1FF8FA7AC19F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89291FDB-FE78-4701-A668-1FF8FA7AC19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89291FDB-FE78-4701-A668-1FF8FA7AC19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89291FDB-FE78-4701-A668-1FF8FA7AC19F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC11A2A5-CF5E-4FC8-BEC8-814C32C137B5} = {6149E4CC-AB78-4EF3-96E0-53BD708778B4}
+		{FE19B2B4-209D-4023-B51B-BDA3BF63A41B} = {6149E4CC-AB78-4EF3-96E0-53BD708778B4}
+		{9579AD9A-AF89-4A9B-8D30-A24D56836F64} = {FE19B2B4-209D-4023-B51B-BDA3BF63A41B}
+		{8DC5C6A9-36F3-4FA7-8D40-BD5C3F93D081} = {9579AD9A-AF89-4A9B-8D30-A24D56836F64}
+		{9F45F4FD-1204-4845-BFD3-72F58DF456DC} = {FE19B2B4-209D-4023-B51B-BDA3BF63A41B}
+		{33BB3C2B-5532-47A3-B88A-82D33E83E595} = {9F45F4FD-1204-4845-BFD3-72F58DF456DC}
+		{36953041-B1A7-4CA1-972A-6E4F91F189E4} = {6149E4CC-AB78-4EF3-96E0-53BD708778B4}
+		{89291FDB-FE78-4701-A668-1FF8FA7AC19F} = {FEC690FA-FA3A-4A7A-9D1E-D8E552F66D40}
+	EndGlobalSection
+EndGlobal

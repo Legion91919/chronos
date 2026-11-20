@@ -1,6 +1,6 @@
 # 0001. Architecture style
 
-- Status: Accepted
+- Status: Accepted; the ledger part is superseded by [0002](0002-event-sourced-ledger-core.md)
 - Date: 2026-11-19
 
 ## Context

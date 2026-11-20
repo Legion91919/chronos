@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Used ONLY by offline runs in a sandbox without nuget.org: gives the xUnit stand-in the
+       Agentic.Blocks.Testing package without NuGet access. Not part of the solution or CI. -->
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Agentic.Blocks.Testing" Version="0.1.0" />
+  </ItemGroup>
+</Project>
